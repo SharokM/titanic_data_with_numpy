@@ -23,3 +23,19 @@ combined_data = np.concatenate((titanic_data1, titanic_data2), axis=0)
 print(combined_data.ndim) 
 # find out shape of dataset (length across each dimension e.g. arrays in arrays, columns & row numbers)
 print(combined_data.shape)
+
+# transform array back into list  
+listify = combined_data.tolist()
+# turn into string 
+titanic_lists_to_string = []
+for list in listify:
+    titanic_string = (",").join(list)
+    titanic_lists_to_string.append(titanic_string)
+
+# write to new file
+complete_titanic_list = ("/n").join(titanic_lists_to_string)
+
+with open("titanic.csv", "w") as file:
+    # To select the headers and data columns you like to add to the CSV file, you’d write: ('Survived,Pclass,Name,Sex,Age,Siblings/Spouses Aboard,Parents/Children Aboard,Fare\n'). Writing \n at the end of the headers indicates to Python that the rest of the Titanic data should start on the next row.
+          file.write(complete_titanic_list)
+          
